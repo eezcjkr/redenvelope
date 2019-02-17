@@ -13,13 +13,17 @@ import Account from '../stores/account';
 
 import { computed, observable, reaction, autorun } from 'mobx';
 
+import { Button } from 'antd';
+
+import { Link } from 'react-router-dom';
+
 
 import { CONFIG } from '../config';
 
 import Tokens from '../stores/tokens';
 import { BigIntType, bi, ZERO, greaterThan, lessThanOrEqual } from 'jsbi-utils';
 
-
+const Big = require('big.js');
 
 interface Params {
   addr: string
@@ -119,8 +123,10 @@ export default class Claim extends React.Component<ClaimProps> {
           )}
           {(!this.initing && this.success) && (
             <div>
-              You got {this.amount} LEAP! <br />
-              <img src="https://s3-eu-west-1.amazonaws.com/redenvelope.me/red+envelope4.jpg" />
+              You got {Big(this.amount.toString() || 0).div(10 ** 18).toFixed()} LEAP! <br />
+              <img src="https://s3-eu-west-1.amazonaws.com/redenvelope.me/red+envelope4.jpg" /> <br />
+              <Button onClick={() => {window.location = "https://testnet.leapdao.org/wallet" as any}}> MANAGE FUNDS </Button>
+              <Button> <Link to={`/fundenvelope/0.01/3`}>FUND YOUR OWN </Link></Button>
             </div>
           )}
           {(!this.initing && !this.success) && (

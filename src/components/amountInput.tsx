@@ -89,7 +89,7 @@ export default class AmountInput extends React.Component<
     const { tokens, color } = this.props;
     return (
       <Select
-        value={color}
+        value={0}
         style={{
           width: this.token.isNft ? '120px !important' : '80px !import',
         }}

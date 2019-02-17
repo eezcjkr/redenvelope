@@ -56,6 +56,7 @@ export default class Deposit extends React.Component<DepositProps, any> {
   @computed
   get selectedToken() {
     const { tokens, color } = this.props;
+    console.log(tokens.tokenForColor(color));
     return tokens && tokens.tokenForColor(color);
   }
 
@@ -63,7 +64,7 @@ export default class Deposit extends React.Component<DepositProps, any> {
   value: number | string = this.props.value;
 
   @observable
-  receipients: number | string;
+  receipients: number | string = this.props.num;
 
   @observable
   funding: boolean = false;
@@ -90,6 +91,9 @@ export default class Deposit extends React.Component<DepositProps, any> {
     //   this.funding = false;
     //   this.funded = true;
     // })
+    console.log(this.receipients);
+    console.log(this.props.account.address);
+    console.log(this.props.color);
     return fetch("https://c90vfqfc1l.execute-api.eu-west-1.amazonaws.com/testnet/fund", {
         method: "POST", 
         headers: {
@@ -105,6 +109,7 @@ export default class Deposit extends React.Component<DepositProps, any> {
     .then(r => {
       console.log(r);
       const addr = r.address;
+      console.log(addr);
       this.wallet = addr;
       return this.selectedToken
         .transfer(
@@ -221,7 +226,7 @@ export default class Deposit extends React.Component<DepositProps, any> {
         {this.funded && (
           <Fragment>
             Your envelope has been funded. Send this link into a chat: <br/>
-            <HexString>{"http://redenvelope.me/claim/" + this.wallet}</HexString>
+            <HexString>{"/postre http://redenvelope.me/claim/" + this.wallet}</HexString>
           </Fragment>
         )}
       </Fragment>
