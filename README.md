@@ -1,26 +1,3 @@
-# UI for Leap DAO plasma bridge contract
-
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-You can:
-
-- View and buy slots (if PoS plasma contract is set)
-- Make deposit
-- Transfer plasma tokens
-- Exit UTXOs
-- Browse network with block explorer
-- Register token contract
-- Get some tokens
-- ...
-
-## Links
-
-Dev: http://bridge-dev.leapdao.org/
-
-Testnet: http://testnet.leapdao.org/
-
-Mainnet: http://mainnet.leapdao.org/
-
 ## Install
 
 `yarn`
