@@ -14,6 +14,8 @@ import TransferForm from '../../components/transferForm';
 import Tokens from '../../stores/tokens';
 import Network from '../../stores/network';
 
+import TokenValue from '../../components/tokenValue';
+
 import { bi } from 'jsbi-utils';
 
 interface TransferProps {
@@ -36,6 +38,19 @@ export default class Transfer extends React.Component<TransferProps, any> {
 
     return (
       <Fragment>
+        <div>
+          <dl className="info" style={{ marginTop: 10 }}>
+            <dt>Token name</dt>
+            <dd>{this.selectedToken.name}</dd>
+            <dt>Plasma balance</dt>
+            <dd>
+              <TokenValue
+                value={this.selectedToken.plasmaBalance}
+                color={this.selectedToken.color}
+              />
+            </dd>
+          </dl>
+        </div>
         <h2>Transfer tokens</h2>
         <TransferForm
           color={this.selectedToken.color}

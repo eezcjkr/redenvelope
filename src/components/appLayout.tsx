@@ -110,73 +110,7 @@ class AppLayout extends Component<AppLayoutProps, any> {
 
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Layout.Header
-          style={{
-            backgroundColor: '#FFF',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Link to="/">
-            <AppLogo />
-          </Link>
-          <MediaQuery minWidth={1049}>{menu(true)}</MediaQuery>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span className="balance">
-              {this.psc && this.psc.balance && this.psc.ready && (
-                <Fragment>
-                  Balance:{' '}
-                  <strong>
-                    <TokenValue
-                      value={this.psc.balance}
-                      color={this.psc.color}
-                    />
-                  </strong>
-                </Fragment>
-              )}
-              {web3 && web3.injected.available && !web3.injected.instance && (
-                <Button
-                  onClick={() => {
-                    web3.injected.enable();
-                  }}
-                >
-                  <span
-                    role="img"
-                    aria-label="fox"
-                    style={{ bottom: -1, position: 'relative' }}
-                  >
-                    🦊
-                  </span>{' '}
-                  Connect MetaMask
-                </Button>
-              )}
-            </span>
-            <MediaQuery maxWidth={1048}>
-              <Dropdown
-                overlay={menu(false)}
-                placement="bottomRight"
-                visible={this.menuVisible}
-                ref={ref => {
-                  this.dropdown = ref;
-                }}
-              >
-                <div
-                  tabIndex={0}
-                  style={{
-                    padding: '0 5px',
-                    marginRight: -5,
-                  }}
-                  onClick={() => {
-                    this.menuVisible = !this.menuVisible;
-                  }}
-                >
-                  <Icon type="bars" style={{ fontSize: 24 }} />
-                </div>
-              </Dropdown>
-            </MediaQuery>
-          </div>
-        </Layout.Header>
+        
         <Layout.Content
           style={{
             display: 'flex',
@@ -187,7 +121,6 @@ class AppLayout extends Component<AppLayoutProps, any> {
             {this.props.children}
           </div>
         </Layout.Content>
-        <Layout.Footer>© Leap DAO {new Date().getFullYear()}</Layout.Footer>
       </Layout>
     );
   }

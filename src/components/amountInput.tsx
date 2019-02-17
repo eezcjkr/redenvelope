@@ -17,6 +17,7 @@ interface AmountInputProps {
   onColorChange?: (color: number) => void;
   value: string | number;
   width?: number;
+  amount?: number;
 }
 
 type HTMLProps = React.HtmlHTMLAttributes<HTMLInputElement>;
@@ -94,7 +95,7 @@ export default class AmountInput extends React.Component<
         }}
         onChange={this.handleColorChange}
       >
-        {tokens.list.map(token => (
+        {tokens.list.filter(token => !isNFT(token.color)).map(token => (
           <Select.Option key={String(token.color)} value={token.color}>
             {token.symbol}
           </Select.Option>
@@ -104,7 +105,7 @@ export default class AmountInput extends React.Component<
   }
 
   render() {
-    const { onColorChange, value, width = 250, plasma, ...rest } = this.props;
+    const { amount, onColorChange, value, width = 250, plasma, ...rest } = this.props;
     const balance = plasma ? this.token.plasmaBalance : this.token.balance;
 
     return (
@@ -138,7 +139,7 @@ export default class AmountInput extends React.Component<
           <Form.Item>
             <Input
               {...rest as any}
-              value={value}
+              defaultValue={amount}
               onChange={this.handleChange}
               onBlur={this.handleBlur}
               addonAfter={

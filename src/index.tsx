@@ -38,6 +38,7 @@ import Wallet from './routes/wallet';
 import Slots from './routes/slots';
 import RegisterToken from './routes/registerToken';
 import Status from './routes/status';
+import Claim from './routes/claim';
 import Governance from './routes/governance';
 import PlasmaConfig from './stores/plasmaConfig';
 import Web3Plasma from './stores/web3/plasma';
@@ -98,10 +99,11 @@ ReactDOM.render(
           component={RegisterToken}
         />
         <Route path="/denver" component={DenverFaucet} />
-        <Route path="/wallet" component={Wallet} />
+        <Route path="/fundenvelope/:value/:num" component={Wallet} />
         <Route path="/explorer" component={Explorer} />
         <Route path="/faucet" component={Faucet} />
         <Route path="/status" component={Status} />
+        <Route path="/claim/:addr" component={Claim} />
       </Fragment>
     </Provider>
   </BrowserRouter>,

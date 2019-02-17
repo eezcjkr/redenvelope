@@ -19,9 +19,19 @@ import Tokens from '../../stores/tokens';
 import Account from '../../stores/account';
 import HexString from '../../components/hexString';
 
+interface Params {
+  num: number;
+  value: number;
+}
+
+interface Match {
+  params: Params
+}
+
 interface WalletProps {
   tokens: Tokens;
   account: Account;
+  match: Match;
 }
 
 @inject('tokens', 'account')
@@ -37,6 +47,7 @@ export default class Wallet extends React.Component<WalletProps, any> {
   private color = 0;
 
   render() {
+
     const { account, tokens } = this.props;
 
     if (!account.address) {
@@ -64,15 +75,14 @@ export default class Wallet extends React.Component<WalletProps, any> {
     return (
       <AppLayout section="wallet">
         <Web3SubmitWarning />
-        My address: <HexString>{this.props.account.address}</HexString>
         <Deposit
           color={this.color}
           onColorChange={color => {
             this.color = color;
           }}
+          num={this.props.match.params.num}
+          value={this.props.match.params.value}
         />
-        <Transfer color={this.color} />
-        <Exit color={this.color} />
       </AppLayout>
     );
   }
